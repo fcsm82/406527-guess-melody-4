@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should QuestionGenreScreen render correctly 1`] = `
+exports[`QuestionGenreScreen is rendered correctly 1`] = `
 <section
   className="game game--genre"
 >
@@ -61,10 +61,13 @@ exports[`Should QuestionGenreScreen render correctly 1`] = `
     <h2
       className="game__title"
     >
-      Выберите инди-рок треки
+      Выберите 
+      rock
+       треки
     </h2>
     <form
       className="game__tracks"
+      onSubmit={[Function]}
     >
       <div
         className="track"
@@ -76,15 +79,19 @@ exports[`Should QuestionGenreScreen render correctly 1`] = `
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg"
+          />
         </div>
         <div
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
             id="answer-1"
             name="answer"
+            onChange={[Function]}
             type="checkbox"
             value="answer-1"
           />
@@ -106,15 +113,19 @@ exports[`Should QuestionGenreScreen render correctly 1`] = `
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg"
+          />
         </div>
         <div
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
             id="answer-2"
             name="answer"
+            onChange={[Function]}
             type="checkbox"
             value="answer-1"
           />
@@ -130,21 +141,25 @@ exports[`Should QuestionGenreScreen render correctly 1`] = `
         className="track"
       >
         <button
-          className="track__button track__button--pause"
+          className="track__button track__button--play"
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg"
+          />
         </div>
         <div
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
             id="answer-3"
             name="answer"
+            onChange={[Function]}
             type="checkbox"
             value="answer-1"
           />
@@ -166,15 +181,19 @@ exports[`Should QuestionGenreScreen render correctly 1`] = `
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg"
+          />
         </div>
         <div
           className="game__answer"
         >
           <input
+            checked={false}
             className="game__input visually-hidden"
             id="answer-4"
             name="answer"
+            onChange={[Function]}
             type="checkbox"
             value="answer-1"
           />
