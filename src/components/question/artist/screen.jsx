@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../const.js";
+import {GameType} from "../../../const.js";
 
 class QuestionArtistScreen extends PureComponent {
   constructor(props) {
@@ -14,30 +14,6 @@ class QuestionArtistScreen extends PureComponent {
       song,
       answers
     } = question;
-
-    const createQuestionsMarkup = () => {
-      return answers.map((answer, i) => {
-        return (
-          <div className="artist" key={answer + i}>
-            <input className="artist__input visually-hidden"
-              type="radio"
-              name="answer"
-              value={`artist-${i + 1}`}
-              id={`answer-${i + 1}`}
-
-              onChange={(evt) => {
-                evt.preventDefault();
-                onAnswer(question, answer);
-              }}
-            />
-            <label className="artist__name" htmlFor={`answer-${i + 1}`}>
-              <img className="artist__picture" src={answer.picture} alt={answer.artist}/>
-              {answer.artist}
-            </label>
-          </div>
-        );
-      });
-    };
 
     return (
       <section className="game game--artist">
@@ -80,7 +56,27 @@ class QuestionArtistScreen extends PureComponent {
           </div>
 
           <form className="game__artist">
-            {createQuestionsMarkup()}
+            {answers.map((answer, i) => {
+              return (
+                <div className="artist" key={answer + i}>
+                  <input className="artist__input visually-hidden"
+                    type="radio"
+                    name="answer"
+                    value={`artist-${i + 1}`}
+                    id={`answer-${i + 1}`}
+
+                    onChange={(evt) => {
+                      evt.preventDefault();
+                      onAnswer(question, answer);
+                    }}
+                  />
+                  <label className="artist__name" htmlFor={`answer-${i + 1}`}>
+                    <img className="artist__picture" src={answer.picture} alt={answer.artist}/>
+                    {answer.artist}
+                  </label>
+                </div>
+              );
+            })}
           </form>
         </section>
       </section>

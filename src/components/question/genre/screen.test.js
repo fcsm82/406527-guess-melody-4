@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import QuestionGenreScreen from './question-genre-screen.jsx';
+import QuestionGenreScreen from './screen.jsx';
 
 const question = {
   type: `genre`,

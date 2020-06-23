@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import QuestionArtistScreen from "./question-artist-screen.jsx";
+import QuestionArtistScreen from "./screen.jsx";
 
 it(`Should QuestionGenreScreen render correctly`, () => {
   const tree = renderer

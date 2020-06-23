@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../const.js";
+import {GameType} from "../../../const.js";
 
 
 class QuestionGenreScreen extends PureComponent {
@@ -20,37 +20,6 @@ class QuestionGenreScreen extends PureComponent {
       genre,
       answers
     } = question;
-
-    const createQuestionsMarkup = () => {
-      return answers.map((answer, i) => {
-        return (
-          <div key={answer + i} className="track">
-            <button className="track__button track__button--play" type="button"></button>
-            <div className="track__status">
-              <audio src = {answer.src} />
-            </div>
-            <div className="game__answer">
-              <input className="game__input visually-hidden"
-                type="checkbox"
-                name="answer"
-                value="answer-1"
-                id={`answer-${i + 1}`}
-                checked={userAnswers[i]}
-
-                onChange={(evt) => {
-                  const value = evt.target.checked;
-
-                  this.setState({
-                    answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
-                  });
-                }}
-              />
-              <label className="game__check" htmlFor={`answer-${i + 1}`}>Отметить</label>
-            </div>
-          </div>
-        );
-      });
-    };
 
     return (
       <section className="game game--genre">
@@ -86,7 +55,34 @@ class QuestionGenreScreen extends PureComponent {
               onAnswer(question, this.state.answers);
             }}
           >
-            {createQuestionsMarkup()}
+            {answers.map((answer, i) => {
+              return (
+                <div key={answer + i} className="track">
+                  <button className="track__button track__button--play" type="button"></button>
+                  <div className="track__status">
+                    <audio src = {answer.src} />
+                  </div>
+                  <div className="game__answer">
+                    <input className="game__input visually-hidden"
+                      type="checkbox"
+                      name="answer"
+                      value="answer-1"
+                      id={`answer-${i + 1}`}
+                      checked={userAnswers[i]}
+
+                      onChange={(evt) => {
+                        const value = evt.target.checked;
+
+                        this.setState({
+                          answers: [...userAnswers.slice(0, i), value, ...userAnswers.slice(i + 1)],
+                        });
+                      }}
+                    />
+                    <label className="game__check" htmlFor={`answer-${i + 1}`}>Отметить</label>
+                  </div>
+                </div>
+              );
+            })}
             <button className="game__submit button" type="submit">Ответить</button>
           </form>
         </section>

@@ -3,8 +3,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import PropTypes from "prop-types";
 import {GameType} from "../../const.js";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
-import QuestionArtistScreen from "../question-artist-screen/question-artist-screen.jsx";
-import QuestionGenreScreen from "../question-genre-screen/question-genre-screen.jsx";
+import QuestionArtistScreen from "../question/artist/screen.jsx";
+import QuestionGenreScreen from "../question/genre/screen.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -13,6 +13,32 @@ class App extends PureComponent {
     this.state = {
       step: -1,
     };
+  }
+
+  _renderQuestionArtistScreen(question) {
+    return (
+      <QuestionArtistScreen
+        question={question}
+        onAnswer={() => {
+          this.setState((prevState) => ({
+            step: prevState.step + 1,
+          }));
+        }}
+      />
+    );
+  }
+
+  _renderQuestionGenreScreen(question) {
+    return (
+      <QuestionGenreScreen
+        question={question}
+        onAnswer={() => {
+          this.setState((prevState) => ({
+            step: prevState.step + 1,
+          }));
+        }}
+      />
+    );
   }
 
   _renderGameScreen() {
@@ -35,27 +61,9 @@ class App extends PureComponent {
     if (question) {
       switch (question.type) {
         case GameType.ARTIST:
-          return (
-            <QuestionArtistScreen
-              question={question}
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
-            />
-          );
+          return this._renderQuestionArtistScreen(question);
         case GameType.GENRE:
-          return (
-            <QuestionGenreScreen
-              question={question}
-              onAnswer={() => {
-                this.setState((prevState) => ({
-                  step: prevState.step + 1,
-                }));
-              }}
-            />
-          );
+          return this._renderQuestionGenreScreen(question);
       }
     }
 
@@ -63,7 +71,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {questions} = this.props;
+    const [artistQuestion, genreQuestion] = this.props.questions;
     return (
       <BrowserRouter>
         <Switch>
@@ -72,13 +80,13 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/artist">
             <QuestionArtistScreen
-              question={questions[1]}
+              question={genreQuestion}
               onAnswer={() => {}}
             />
           </Route>
           <Route exact path="/genre">
             <QuestionGenreScreen
-              question={questions[0]}
+              question={artistQuestion}
               onAnswer={() => {}}
             />
           </Route>
