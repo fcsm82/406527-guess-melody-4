@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import QuestionGenreScreen from './screen.jsx';
 
+
 const question = {
   type: `genre`,
   genre: `rock`,
@@ -20,11 +21,12 @@ const question = {
   }],
 };
 
-it(`QuestionGenreScreen is rendered correctly`, () => {
+it(`GenreQuestionScreen is rendered correctly`, () => {
   const tree = renderer.create((
     <QuestionGenreScreen
       question={question}
       onAnswer={() => {}}
+      renderPlayer={() => {}}
     />
   ), {
     createNodeMock: () => {
