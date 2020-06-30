@@ -49,5 +49,4 @@ const mapStateToProps = (state) => ({
   mistakes: state.mistakes,
 });
 
-export {GameScreen};
 export default connect(mapStateToProps)(GameScreen);

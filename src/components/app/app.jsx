@@ -16,7 +16,30 @@ const QuestionGenreScreenWrapped = withAudioPlayer(QuestionGenreScreen);
 const QuestionArtistScreenWrapped = withAudioPlayer(QuestionArtistScreen);
 
 class App extends PureComponent {
-
+  render() {
+    const [artistQuestion, genreQuestion] = this.props.questions;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderGameScreen()}
+          </Route>
+          <Route exact path="/artist">
+            <QuestionArtistScreenWrapped
+              question={genreQuestion}
+              onAnswer={() => {}}
+            />
+          </Route>
+          <Route exact path="/genre">
+            <QuestionGenreScreenWrapped
+              question={artistQuestion}
+              onAnswer={() => {}}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 
   _renderGameScreen() {
     const {
@@ -62,31 +85,6 @@ class App extends PureComponent {
 
     return null;
   }
-
-  render() {
-    const [artistQuestion, genreQuestion] = this.props.questions;
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderGameScreen()}
-          </Route>
-          <Route exact path="/artist">
-            <QuestionArtistScreenWrapped
-              question={genreQuestion}
-              onAnswer={() => {}}
-            />
-          </Route>
-          <Route exact path="/genre">
-            <QuestionGenreScreenWrapped
-              question={artistQuestion}
-              onAnswer={() => {}}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
 }
 App.propTypes = {
   maxMistakes: PropTypes.number.isRequired,
@@ -112,5 +110,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
