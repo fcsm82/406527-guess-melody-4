@@ -2,7 +2,7 @@ import React from "react";
 import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import QuestionArtistScreen from "./screen.jsx";
+import ArtistQuestionScreen from "./artist-question.jsx";
 
 configure({adapter: new Adapter()});
 
@@ -44,7 +44,7 @@ it(`Click on user answer should pass to the callback data-object from which this
     picture: `pic-one`,
   };
 
-  const screen = shallow(<QuestionArtistScreen
+  const screen = shallow(<ArtistQuestionScreen
     onAnswer={onAnswer}
     question={question}
     renderPlayer={() => {}}

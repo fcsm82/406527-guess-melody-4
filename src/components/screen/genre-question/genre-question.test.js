@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import QuestionGenreScreen from './screen.jsx';
+import GenreQuestionScreen from './genre-question.jsx';
 
 
 const question = {
@@ -23,10 +23,12 @@ const question = {
 
 it(`GenreQuestionScreen is rendered correctly`, () => {
   const tree = renderer.create((
-    <QuestionGenreScreen
+    <GenreQuestionScreen
       question={question}
       onAnswer={() => {}}
       renderPlayer={() => {}}
+      onChange={() => {}}
+      userAnswers={[false, false, false, false]}
     />
   ), {
     createNodeMock: () => {
