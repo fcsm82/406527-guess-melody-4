@@ -1,4 +1,4 @@
-import {reducer, ActionCreator, ActionType} from "./reducer.js";
+import {reducer, ActionCreator, Action} from "./reducer.js";
 
 const questions = [
   {
@@ -51,7 +51,7 @@ it(`Reducer should increment current step by a given value`, () => {
     mistakes: 0,
     questions,
   }, {
-    type: ActionType.INCREMENT_STEP,
+    type: Action.INCREMENT_STEP,
     payload: 1,
   })).toEqual({
     step: 0,
@@ -64,7 +64,7 @@ it(`Reducer should increment current step by a given value`, () => {
     mistakes: 0,
     questions,
   }, {
-    type: ActionType.INCREMENT_STEP,
+    type: Action.INCREMENT_STEP,
     payload: 0,
   })).toEqual({
     step: -1,
@@ -78,7 +78,7 @@ it(`Reducer should increment number of mistakes by a given value`, () => {
     step: -1,
     mistakes: 0,
   }, {
-    type: ActionType.INCREMENT_MISTAKES,
+    type: Action.INCREMENT_MISTAKES,
     payload: 1,
   })).toEqual({
     step: -1,
@@ -89,7 +89,7 @@ it(`Reducer should increment number of mistakes by a given value`, () => {
     step: -1,
     mistakes: 0,
   }, {
-    type: ActionType.INCREMENT_MISTAKES,
+    type: Action.INCREMENT_MISTAKES,
     payload: 0,
   })).toEqual({
     step: -1,
@@ -97,10 +97,51 @@ it(`Reducer should increment number of mistakes by a given value`, () => {
   });
 });
 
+it(`Reducer should return default`, () => {
+  expect(reducer({
+    step: 5,
+    mistakes: 1,
+  }, {
+    type: Action.RESET,
+    payload: null,
+  })).toEqual({
+    step: 0,
+    mistakes: 0,
+    maxMistakes: 3,
+    questions,
+  });
+
+  expect(reducer({
+    step: 0,
+    mistakes: 0,
+  }, {
+    type: Action.RESET,
+    payload: null,
+  })).toEqual({
+    step: 0,
+    mistakes: 0,
+    maxMistakes: 3,
+    questions,
+  });
+
+  expect(reducer({
+    step: -1,
+    mistakes: 0,
+  }, {
+    type: Action.RESET,
+    payload: null,
+  })).toEqual({
+    step: 0,
+    mistakes: 0,
+    maxMistakes: 3,
+    questions,
+  });
+});
+
 describe(`Action creators work correctly`, () => {
   it(`Action creator for incrementing step returns correct action`, () => {
     expect(ActionCreator.incrementStep()).toEqual({
-      type: ActionType.INCREMENT_STEP,
+      type: Action.INCREMENT_STEP,
       payload: 1,
     });
   });
@@ -128,7 +169,7 @@ describe(`Action creators work correctly`, () => {
       artist: `correct`,
       picture: ``,
     })).toEqual({
-      type: ActionType.INCREMENT_MISTAKES,
+      type: Action.INCREMENT_MISTAKES,
       payload: 0,
     });
   });
@@ -156,7 +197,7 @@ describe(`Action creators work correctly`, () => {
       artist: `incorrect`,
       picture: ``,
     })).toEqual({
-      type: ActionType.INCREMENT_MISTAKES,
+      type: Action.INCREMENT_MISTAKES,
       payload: 1,
     });
   });
@@ -181,7 +222,7 @@ describe(`Action creators work correctly`, () => {
         },
       ]
     }, [false, true, false, false])).toEqual({
-      type: ActionType.INCREMENT_MISTAKES,
+      type: Action.INCREMENT_MISTAKES,
       payload: 0,
     });
   });
@@ -206,8 +247,16 @@ describe(`Action creators work correctly`, () => {
         },
       ]
     }, [true, true, true, true])).toEqual({
-      type: ActionType.INCREMENT_MISTAKES,
+      type: Action.INCREMENT_MISTAKES,
       payload: 1,
     });
+  });
+
+  it(`Action creator for reset game returns action with null payload`, () => {
+    expect(ActionCreator.resetGame())
+      .toEqual({
+        type: Action.RESET,
+        payload: null,
+      });
   });
 });

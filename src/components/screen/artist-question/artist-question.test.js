@@ -1,6 +1,7 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import QuestionArtistScreen from "./screen.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import ArtistQuestionScreen from './artist-question.jsx';
+
 
 const question = {
   type: `artist`,
@@ -22,7 +23,7 @@ const question = {
 
 it(`ArtistQuestionScreen is rendered correctly`, () => {
   const tree = renderer.create(
-      <QuestionArtistScreen
+      <ArtistQuestionScreen
         question={question}
         onAnswer={() => {}}
         renderPlayer={() => {}}
