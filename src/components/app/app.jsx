@@ -6,7 +6,7 @@ import {ActionCreator} from "../../reducer/game/game.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import WelcomeScreen from "../screen/welcome/welcome.jsx";
 import ArtistQuestionScreen from "../screen/artist-question/artist-question.jsx";
-import AuthScreen from "../auth-screen/auth-screen.jsx";
+import AuthScreen from "../screen/auth/auth.jsx";
 import GameScreen from "../screen/game/game.jsx";
 import GenreQuestionScreen from "../screen/genre-question/genre-question.jsx";
 import GameOverScreen from "../screen/game-over/game-over.jsx";
