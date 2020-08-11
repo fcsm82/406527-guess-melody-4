@@ -1,4 +1,5 @@
-import {reducer, ActionCreator, Action} from "./game.js";
+import {reducer, ActionCreator, Action} from "./game";
+
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
@@ -131,6 +132,7 @@ it(`Reducer should return step -1`, () => {
     maxMistakes: 3,
   });
 });
+
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for incrementing step returns correct action`, () => {

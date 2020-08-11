@@ -1,6 +1,7 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import GenreQuestionItem from "./item.jsx";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import GenreQuestionItem from "./item";
+import {noop} from "../../../../utils";
 
 
 const answer = {
@@ -13,9 +14,9 @@ it(`GenreQuestionItem is rendered correctly`, () => {
     <GenreQuestionItem
       answer={answer}
       id={0}
-      onChange={() => {}}
-      renderPlayer={() => {}}
-      userAnswers={false}
+      onChange={noop}
+      renderPlayer={() => null}
+      userAnswer={false}
     />
   )).toJSON();
 
